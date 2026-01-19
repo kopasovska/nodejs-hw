@@ -33,17 +33,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: 'Hello World!' });
+app.get('/notes', (req, res) => {
+  res.status(200).json({ message: 'Retrieved all notes' });
 });
 
-app.get('/users/:userId', (req, res) => {
+app.get('/notes/:notesId', (req, res) => {
   const { userId } = req.params;
-  res.status(200).json({ id: userId, name: 'John Doe' });
+  res.status(200).json({ message: `Retrieved note with ID: ${userId}` });
 });
 
 app.get('/test-error', (req, res) => {
-  throw new Error('Something went wrong...');
+  throw new Error('Simulated server error');
 });
 
 app.use((req, res) => {
