@@ -2,13 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
 import 'dotenv/config';
-import helmet from 'helmet';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
 app.use(cors());
-app.use(helmet());
+
 app.use(express.json({ limit: '10mb' }));
 
 app.use(
@@ -37,12 +36,12 @@ app.get('/notes', (req, res) => {
   res.status(200).json({ message: 'Retrieved all notes' });
 });
 
-app.get('/notes/:notesId', (req, res) => {
-  const { notesId } = req.params;
-  res.status(200).json({ message: `Retrieved note with ID: ${notesId}` });
+app.get('/notes/:noteId', (req, res) => {
+  const { noteId } = req.params;
+  res.status(200).json({ message: `Retrieved note with ID: ${noteId}` });
 });
 
-app.get('/test-error', (req, res) => {
+app.get('/test-error', () => {
   throw new Error('Simulated server error');
 });
 
