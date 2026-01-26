@@ -6,6 +6,7 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import notesRoutes from './routes/notesRoutes.js';
+import { errors } from 'celebrate';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -21,7 +22,10 @@ app.use(notesRoutes);
 //404 HANDLER
 app.use(notFoundHandler);
 
-//ERRORS HANDLER
+//VALIDATION ERRORS HANDLER
+app.use(errors());
+
+//OTHER ERRORS HANDLER
 app.use(errorHandler);
 
 //DB CONNECTION
