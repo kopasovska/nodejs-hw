@@ -6,6 +6,7 @@ import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import notesRoutes from './routes/notesRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import { errors } from 'celebrate';
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json({ limit: '10mb' }));
 
 //PATHS GROUP CONNECTION
 app.use(notesRoutes);
+app.use(authRoutes);
 
 //404 HANDLER
 app.use(notFoundHandler);

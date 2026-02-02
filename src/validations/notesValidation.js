@@ -63,4 +63,4 @@ export const getAllNotesSchema = {
     tag: Joi.string().valid(...TAGS),
     search: Joi.string().allow('').trim(),
   }),
-
+};
