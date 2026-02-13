@@ -12,7 +12,7 @@ export const getAllNotes = async (req, res) => {
   } = req.query;
   const skip = (page - 1) * perPage;
 
-  const notesQuery = Note.find();
+  const notesQuery = Note.find({ userId: req.user._id });
 
   if (tag) {
     notesQuery.where('tag').equals(tag);
